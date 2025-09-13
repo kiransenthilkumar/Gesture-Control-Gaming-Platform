@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gesture Control Gaming Platform</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="content">
+                <img src="/static/image.svg" alt="Logo">
+                <h1>Gesture Control Gaming Platform</h1>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="button-container">
+            <div class="buttons">
+                <button class="btn"><span></span>
+                    <p data-start="good luck!" data-text="start!" data-title="new game" onclick="startPython()"></p>
+                </button>
+                <button class="btn"><span></span>
+                    <p data-start="good luck!" data-text="game over!" data-title="Stop" onclick="stopPython()"></p>
+                </button>
+            </div>
+        </section>
+        <section class="game-section">
+            <div class="eight">
+                <h2>Games</h2>
+            </div>
+            <ul class="game-item">
+                <li class="game-item" onclick="openGame('2048')"><img id="g2048" src="/static/2048.png" alt="Subway-surfers-image"></li>
+                <li class="game-item" onclick="openGame('Subway Surfers')"><img id="ss" src="/static/ss1.jpg" alt="Subway-surfers-image"></li>
+                <li class="game-item" onclick="openGame('Temple Run')"><img id="tr" src="/static/temple_run.webp" alt="Subway-surfers-image"></li>
+                <li class="game-item" onclick="openGame('Hill climb racing')"><img id="hcr" src="/static/hcr.png" alt="Subway-surfers-image"></li>
+                </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Student Name: Gowtham S</p>
+        <p>Roll No.: 221CT118</p>
+        <p>College Name: Dr. N.G.P Arts and Science College</p>
+        <p>Department Name: Bsc. Computer Technology</p>
+    </footer>
+
+    <script>
+        function startPython() {
+            fetch('/start_python')
+                .then(response => response.text())
+                .then(data => alert(data));
+        }
+
+        function stopPython() {
+            fetch('/stop_python')
+                .then(response => response.text())
+                .then(data => alert(data));
+        }
+
+        function openGame(gameName) {
+            let gameUrl = '';
+            if (gameName === 'Subway Surfers') {
+                gameUrl = 'https://poki.com/en/g/subway-surfers';
+            } else if (gameName === 'Temple Run') {
+                gameUrl = 'https://poki.com/en/g/temple-run-2'; // Replace with a better link
+            } else if (gameName === 'Hill climb racing') {
+                gameUrl = 'https://poki.com/en/g/hill-climb-racing-lite'; // Official Angry Birds site
+            } else if (gameName === '2048') {
+                gameUrl = 'https://poki.com/en/g/2048'; // Official Angry Birds site
+            }
+            if (gameUrl) {
+                window.open(gameUrl, '_blank');
+            } else {
+                alert('Game link not available.');
+            }
+        }
+    </script>
+</body>
+
+</html>
